@@ -24,6 +24,15 @@ class Neighbourhood(models.Models):
         Method to delete a neighbourhood
         '''
         self.delete()
+        
+    @classmethod
+    def get_neighbourhoods(cls):
+        '''
+        method thats gets all images posts from database
+        '''
+        Neighbourhoods = cls.objects.all()
+        return Neighbourhoods
+        
     
     
     
