@@ -33,27 +33,39 @@ class Neighbourhood(models.Model):
         Neighbourhoods = cls.objects.all()
         return Neighbourhoods
     
-    class Post(models.Model):
-        name = models.CharField(max_length =50)
-        post = models.ImageField(upload_to='posts/')
-        profile = models.ForeignKey('Profile')
-        post_caption = models.ForeignKey('Neighbourhood')
-        date = models.CharField(max_lenght=20)
-        business = models.ForeignKey('Business')
-        user = models.ForeignKey(User,on_delete=models.CASCADE)
-        
-        def__str__(self):
-            return self.name
-        
-        @classmethod
-        def get_post(cls):
-            images = Post.object.all()
-            return images
+class Post(models.Model):
+    name = models.CharField(max_length =50)
+    post = models.ImageField(upload_to='posts/')
+    profile = models.ForeignKey('Profile')
+    post_caption = models.ForeignKey('Neighbourhood')
+    date = models.CharField(max_lenght=20)
+    business = models.ForeignKey('Business')
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name
+    
+    @classmethod
+    def get_post(cls):
+        images = Post.object.all()
+        return images
         
     @classmethod
     def get_post_by_id(cls, id):
-    selected_post = Post.objects.filter_by(id=id)
-    return selected_post
+        selected_post = Post.objects.filter_by(id=id)
+        return selected_post
 
+    @classmethod
+    def get_post_by_neighbourhood_id(cls, neighbourhood_id):
+        images = Post.objects.filter(id = neighbourhood_id).all()
+        return images
     
+class Business(models.Model):
+    name = models.CharField(max_length = 30)
+    b_email = models.CharField(max_length = 50)
+    neighbourhood = models.ForeignKey('Neighbourhood')
+    profile = models.ForeignKey('Profile')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to= 'businesss/')
+
     
