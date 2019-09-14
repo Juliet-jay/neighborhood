@@ -13,5 +13,11 @@ class Neighbourhood(models.Models):
     def __str__(self):
         return self.neighbourhood_name
     
+    def create_neighbourhood(self):
+        '''
+        Method to create a neighbourhood
+        '''
+        self.create()
+    
     
     
