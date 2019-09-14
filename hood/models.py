@@ -18,6 +18,12 @@ class Neighbourhood(models.Models):
         Method to create a neighbourhood
         '''
         self.create()
+        
+    def delete_neighbourhood(self):
+        '''
+        Method to delete a neighbourhood
+        '''
+        self.delete()
     
     
     
