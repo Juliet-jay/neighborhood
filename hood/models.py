@@ -68,4 +68,33 @@ class Business(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to= 'businesss/')
 
+    def __str__(self):
+        return self.name
+
+    def create_business(self):
+        self.create()
+
+    def delete_business(self):
+        self.delete()
+
+    @classmethod
+    def get_businesses(cls):
+        businesses = Business.objects.all ()
+        return businesses
+
+    @classmethod
+    def search_by_neighbourhood(cls,search_term):
+        businesses = cls.objects.filter(neighbourhood__neighbourhood_name__icontains=search_term)
+        return businesses
     
+class Profile(models.Model):
+    name = models.CharField(max_length =30)
+    neighbourhood = models.ForeignKey('Neighbourhood')
+    email = models.CharField(max_length = 40)
+    profile_pic = models.ImageField(upload_to='occupants/')
+    occupants_id = models.IntegerField(unique = True)
+    location = models.CharField(max_length=30)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name
