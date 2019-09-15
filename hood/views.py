@@ -1,6 +1,8 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Neighbourhood
-
+from .models import Neighbourhood,Business,Post,Profile
+from django.contrib.auth.decorators import login_required
+from .forms import ProfileForm,PostForm
+from django.contrib.auth.models import User
 # Create your views here.
 def welcome(request):
     return render(request, 'welcome.html')
@@ -28,4 +30,94 @@ def search_results(request):
     
     
     
+    def neighbourhoods(request):
+        neighbourhoods = Neighbourhood.objects.all()
+        return render(request, 'neighbourhoods.html',{'neighbourhoods':neighbourhoods})
     
+    def businesses(request):
+        businesses = business.get_businesses()
+        return render(request, 'business.html',{"businesses":businesses})
+    
+    @login_required(login_url = '/accounts/login')
+    def create_profile(request):
+        current_user = request.user
+        profiles = Profile.objects.filter(user=current_user).count()
+        
+        if request.method =='POST':
+            form = ProfileForm(request.POST, request.FILES)
+            
+            if form.is_valid:
+                
+                if profiles == 0:
+                    k = form.save(commit=False)
+                    k.user = current_user
+                    k.save()
+                    return redirect(profile)
+                else:
+                    record = Profile.objects.filter(user=current_user)
+                    record.delete()
+                    k = form.save(commit=False)
+                    k.user = current_user
+                    k.save()
+                    return redirect(profile)
+        
+        else:
+            form = profileForm()
+        return render(request, 'profile_form.html',{"form":form})
+      
+    
+    @login_required(login_url='/accounts/login')
+    def profile(request):
+        current_user = request.user
+        
+        try:
+            single_profile = Profile.objects.get(user=current_user.id)
+            
+            title = f'{current_user.username}\'s' 
+            
+            info = profile.objects.filter(user=current_user)
+            
+            pics = Post.objects.filter(user=request.profile.id).all()
+            
+        except:
+            
+            title = f'{current_user.username}' 
+            
+            pics = Post.objects.filter(user=request.profile.id).all()
+            
+        return render(request, 'profile.html', {"title": title, "current_user": current_user, "pics": pics})
+    
+    @login_required(login_url='/accounts/login')
+    def create_post(request):
+        current_user = request.user
+        
+         posts = Post.objects.filter(user=current_user).count()
+         
+        if request.method == 'POST':
+            
+            form = PostForm(request.POST, request.FILES)
+            
+            if form.is_valid:
+                
+                if posts == 0:
+                    k = form.save(commit=False)
+                    k.user = current_user
+                    k.save()
+                    return redirect(home)
+                else:
+                    record = Post.objects.filter(user=current_user)
+                    record.delete()
+                    k = form.save(commit=False)
+                    k.user = current_user
+                    k.save()
+                    return redirect(home)
+        
+        else:
+            form = PostForm()
+    return render(request, 'post_form.html', {"form": form})
+
+              
+        
+
+            
+        
