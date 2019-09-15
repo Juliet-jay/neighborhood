@@ -15,3 +15,17 @@ def single_photo(request,post_id):
     return render(request,'photo_details.html',
     {'photo':photo})
     
+def search_results(request):
+    if 'businesses' in request.GET and request.GET["businesses"]:
+        search_term = request.Get.get("businesses")
+        searched_businesses = Business.search_by_neighbourhood(search_term)
+        message = f"{search_term}"
+        
+        return render(request, 'search-results.html',{"message":message,"businesses":searched_businesses})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search-results.html',{"message":message})
+    
+    
+    
+    
