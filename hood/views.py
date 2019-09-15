@@ -21,10 +21,10 @@ def search_results(request):
         searched_businesses = Business.search_by_neighbourhood(search_term)
         message = f"{search_term}"
         
-        return render(request, 'search-results.html',{"message":message,"businesses":searched_businesses})
+        return render(request, 'search.html',{"message":message,"businesses":searched_businesses})
     else:
         message = "You haven't searched for any term"
-        return render(request, 'search-results.html',{"message":message})
+        return render(request, 'search.html',{"message":message})
     
     
     
