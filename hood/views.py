@@ -8,7 +8,7 @@ def welcome(request):
 def home(request,Neighbourhood_id):
     posts = Post.objects.filter(Neighbourhood=Neighbourhood_).all()
     print(posts)
-    return render(request,'index.html',{"posts":posts})
+    return render(request,'home.html',{"posts":posts})
 
 def single_photo(request,post_id):
     photo = Post.objects.get(id=post_id)
