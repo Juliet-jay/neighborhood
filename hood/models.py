@@ -36,10 +36,9 @@ class Neighbourhood(models.Model):
 class Post(models.Model):
     name = models.CharField(max_length =50)
     post = models.ImageField(upload_to='posts/')
-    profile = models.ForeignKey('Profile')
-    post_caption = models.ForeignKey('Neighbourhood')
-    date = models.CharField(max_lenght=20)
-    business = models.ForeignKey('Business')
+    post_caption = models.TextField()
+    neighbourhood = models.ForeignKey('Neighbourhood')
+    date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     
     def __str__(self):
@@ -92,7 +91,7 @@ class Profile(models.Model):
     neighbourhood = models.ForeignKey('Neighbourhood')
     email = models.CharField(max_length = 40)
     profile_pic = models.ImageField(upload_to='occupants/')
-    occupants_id = models.IntegerField(unique = True)
+    occupant_id = models.IntegerField(unique = True)
     location = models.CharField(max_length=30)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
