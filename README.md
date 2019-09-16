@@ -1,76 +1,43 @@
-# Instagram
+### NeighbourhoodWatch
 
-Neighbourhood website.
+### Description
+_a web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts._
+### Author
+_julie k_
 
---------------------------
-# Author 
+### Setup and installation
+* _Click on `clone/download` to get import link_
+* Install the prerequisites either globally or in a virtual environment.
+* Install via pip:
+            ``` pip install -r requirements.txt ```
 
- JulieK
+*  Run by:
+           ``` pyhton3.6 manage.py server ```
 
------------------------
-# Description
- 
- This is a neighbourhood application that users can find businesses in their neighborhood. Find Contact Information for the health department and Police authorities near their neighborhood and also create Posts that will be visible to everyone in their neighborhood
----------------------------
-# BDD
+### BDD
+| Behavior  |Input   | Output  |
+|:-:|---|---|
+| login form | redirected to registration form | can view home page   |
+| profile |add profile pic and bio   | profile pic posted  |
+| asks to create hood  | fill in details about your hood  |  hood is displayed |
+|  asks to join | describe your hood | allowed to join |
 
-|Behaviour|Input|Output|
-|:------|:-------|:----|
-|Create an account|A user who is interested can sign up by entering the details needed|After all the details are done and submitted the user receives an email an thus can log in to his newly created account|
-|Post pictures|User can upload pictures which are saved|He can see the pictures in his account|
-|Like and follow other users|The user when he clicks the like or follow icon|The number of likes and followers increase|
+### Technologies Used
+* CSS.
+* HTML.
+* Python3.6.
+* Django
+* Dependencies
+* pip
+* Bootstrap4
+* pillow
 
------------------------------
-# Getting Started.
+### Support and contact details
+#### Email: juliek@gmail.com_
 
-These instructions will get you a copy of the project up and running on a local host.
-
-Step 1: git clone
-Step 2: Enter the Project root folder
-
-cd gallery/
-install virtual environment (venv) without pip
-
-python3.6 -m venv --without-pip virtual
-Step 3: Activate virtual environment
-
-source virtual/bin/activate
-install pip using curl
-
-curl https://bootstrap.pypa.io/get-pip.py | python
-run the application
-
-python3.6 manage.py runserver
-
----------------------------
-## Prerequisites
-
-None, follow this link to get run the application.
-
------------------------
-## Deployment
-
-Deploying the Django Apps to Heroku to view.
-
----------------------------
-## Built With
-
-Python3.6 - Python is a programming language that lets you work quickly and integrate systems more effectively
-Django - Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design
-postgresql - PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
-Versioning
-version 1.0.0
-
------------------------
-## Bugs
-
-If you encounter any bugs, email me on juliekmuthee@gmail.com. If you would like to add some changes, please feel free to
-fork the project and make a pull request.
-
------------------------
-## License
-
- Copyright 2019  Juliet K
+### Licensing
+### MIT License
+Copyright 2019  Juliet K
 
  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
