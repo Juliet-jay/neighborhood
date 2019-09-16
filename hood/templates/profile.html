@@ -4,9 +4,13 @@
 {%block content%}
 <body>
     <div class="well"style="background-color:white;margin-left:26%;margin-right:16%;opacity:0.9;margin-top:2%;">
-        {% for detail in info %}
-            <h3 style="padding-left:5px;padding-right:20px;margin-top:-10px;margin-bottom:-13px;font-weight:bolder;"><img style="width:60px;height:60px;border-radius:118px" src="">{{request.user.username}}</h3>
-        {% endfor %}
+   
+            <h3 style="padding-left:5px;padding-right:20px;margin-top:-10px;margin-bottom:-13px;font-weight:bolder;"><img style="width:60px;height:60px;border-radius:118px" src="{{user.profile.profile_pic.url}}">
+            {{user.username}}</h3>
+            <p>{{user.profile.location}}</p>
+            <p>{{user.profile.occupant_id}}</p>
+        
+        <a href="{% url 'create_profile'%}" class="btn btn-info">create profile</a>
     </div>
 </body>
 {% endblock %}

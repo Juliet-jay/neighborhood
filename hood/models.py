@@ -63,7 +63,6 @@ class Business(models.Model):
     name = models.CharField(max_length = 30)
     b_email = models.CharField(max_length = 50)
     neighbourhood = models.ForeignKey('Neighbourhood')
-    profile = models.ForeignKey('Profile')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to= 'businesss/')
 
@@ -78,7 +77,7 @@ class Business(models.Model):
 
     @classmethod
     def get_businesses(cls):
-        businesses = Business.objects.all ()
+        businesses = cls.objects.all()
         return businesses
 
     @classmethod
@@ -87,13 +86,11 @@ class Business(models.Model):
         return businesses
     
 class Profile(models.Model):
-    name = models.CharField(max_length =30)
-    neighbourhood = models.ForeignKey('Neighbourhood')
-    email = models.CharField(max_length = 40)
-    profile_pic = models.ImageField(upload_to='occupants/')
-    occupant_id = models.IntegerField(unique = True)
-    location = models.CharField(max_length=30)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey('Neighbourhood',null=True,blank=True)
+    profile_pic = models.ImageField(upload_to='occupants/',default='')
+    occupant_id = models.IntegerField(unique = True,null=True,blank=True)
+    location = models.CharField(max_length=30,null=True,blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.name
+        return self.user.username
