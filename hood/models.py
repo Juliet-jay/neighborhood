@@ -62,7 +62,7 @@ class Post(models.Model):
 class Business(models.Model):
     name = models.CharField(max_length = 30)
     b_email = models.CharField(max_length = 50)
-    neighbourhood = models.ForeignKey('Neighbourhood')
+    neighbourhood = models.ForeignKey('Neighbourhood',null=True,blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to= 'businesss/')
 

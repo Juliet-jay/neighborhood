@@ -4,8 +4,7 @@ from . import views
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^$',views.welcome,name = 'welcome'),
-    url(r'^home/$', views.home,name= 'home'),
+    url(r'^$', views.home,name= 'home'),
     url(r'^photo/(\d+)', views.single_photo, name='single_photo'),
     url(r'^search_results/',views.search_results,name='search_results'),
     url(r'^profile/$', views.profile, name='Profile'),

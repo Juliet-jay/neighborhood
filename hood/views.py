@@ -57,9 +57,7 @@ def create_profile(request):
             
             n=neighForm.save(commit=False)
             n.user=current_user
-            k.neighbourhood=n.user.profile.neighbourhood
-            
-            
+        
             n.save()
             k.save()
             return redirect(profile)
